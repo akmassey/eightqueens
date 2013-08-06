@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = EightQueens::VERSION
   spec.authors       = ["Aaron Massey"]
   spec.email         = ["akmassey@sixlines.org"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{A ruby implementation of various solutions to the eight queens problem.}
+  spec.summary       = %q{A ruby implementation of various solutions to the eight queens problem.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

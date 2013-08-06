@@ -1,6 +1,6 @@
-# Eightqueens
+# Eight Queens
 
-TODO: Write a gem description
+A ruby implementation of various solutions to the [eight queens problem][1].
 
 ## Installation
 
@@ -27,3 +27,5 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+[1]: https://en.wikipedia.org/wiki/Eight_queens_puzzle
