@@ -1,3 +1,5 @@
+require 'pry'
+
 module EightQueens
   class State
     def initialize(queen_positions)
@@ -9,17 +11,12 @@ module EightQueens
     def horizontal_attacks
       attacks = 0
 
-      for char in '1'..'8'
-        count = @queens.count(char)
-        if count > 1
-          attacks += count - 1
-        end
+      pairs.each do |pair|
+        attacks += 1 if (pair[0] == pair[1])
       end
 
       attacks
     end
-
-    private
 
     def valid_queen_positions(positions)
       if positions.match(/[1-8]{8}/)
@@ -27,6 +24,23 @@ module EightQueens
       else
         false
       end
+    end
+
+    def pairs
+      queen_array = @queens.split(//)
+
+      pairs = []
+      queen_array.product(queen_array) do |first, second|
+        pairs << [first, second]
+      end
+
+      diagonals = queen_array.zip(queen_array)
+
+      diagonals.each do |d|
+        pairs.delete_at(pairs.index(d)) unless pairs.index(d).nil?
+      end
+
+      pairs
     end
   end
 end
