@@ -58,8 +58,8 @@ module EightQueens
       it "should return something else for a non-solution" do
         bad = State.new("22222222")
         other = State.new("23456781")
-        bad.attacks.should > 0
-        other.attacks.should > 0
+        bad.attacks.should be > 0
+        other.attacks.should be > 0
       end
 
       it "should find 4 attacking pairs for 24748552" do
@@ -80,6 +80,19 @@ module EightQueens
       it "should find 17 attacking pairs for 32543213" do
         state = State.new("32543213")
         state.attacks.should eq 17
+      end
+    end
+
+    context "#friendly_pairs" do
+      it "should return 28 for a solution to eight queens puzzle" do
+        solution.friendly_pairs.should eq 28
+      end
+
+      it "should return less than 28 for a non-solution" do
+        bad = State.new("22222222")
+        other = State.new("23456781")
+        bad.friendly_pairs.should be < 28
+        other.friendly_pairs.should be < 28
       end
     end
 

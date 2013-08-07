@@ -45,6 +45,12 @@ module EightQueens
       horizontal_attacks + diagonal_attacks
     end
 
+    def friendly_pairs
+      28 - attacks
+    end
+
+    private
+
     def valid_queen_positions(positions)
       if positions.match(/[1-8]{8}/)
         true
