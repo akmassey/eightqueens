@@ -4,6 +4,8 @@ module EightQueens
   describe State do
 
     let(:solution) { State.new("24683175") }
+    let(:bad) { State.new("22222222") }
+    let(:also_bad) { State.new("23456781") }
 
     context "#initialize" do
 
@@ -27,13 +29,12 @@ module EightQueens
       end
 
       it "should return something else for a non-solution" do
-        bad = State.new("22222222")
-        bad.horizontal_attacks.should > 0
+        bad.horizontal_attacks.should be > 0
       end
 
       it "should return 1 for a solution with only one horizontally attacking pair" do
-        bad = State.new("22345678")
-        bad.horizontal_attacks.should eq 1
+        state = State.new("22345678")
+        state.horizontal_attacks.should eq 1
       end
     end
 
@@ -43,9 +44,12 @@ module EightQueens
         solution.diagonal_attacks.should eq 0
       end
 
+      it "should return 0 for a non-solution with no diagonal attacks" do 
+        bad.diagonal_attacks.should eq 0
+      end
+
       it "should return something else for a non-solution" do
-        bad = State.new("23456781")
-        bad.diagonal_attacks.should > 0
+        also_bad.diagonal_attacks.should be > 0
       end
     end
 
@@ -56,10 +60,8 @@ module EightQueens
       end
 
       it "should return something else for a non-solution" do
-        bad = State.new("22222222")
-        other = State.new("23456781")
         bad.attacks.should be > 0
-        other.attacks.should be > 0
+        also_bad.attacks.should be > 0
       end
 
       it "should find 4 attacking pairs for 24748552" do
@@ -89,10 +91,8 @@ module EightQueens
       end
 
       it "should return less than 28 for a non-solution" do
-        bad = State.new("22222222")
-        other = State.new("23456781")
         bad.friendly_pairs.should be < 28
-        other.friendly_pairs.should be < 28
+        also_bad.friendly_pairs.should be < 28
       end
     end
 
