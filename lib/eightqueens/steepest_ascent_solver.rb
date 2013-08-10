@@ -16,6 +16,8 @@ module EightQueens
           @steps += 1
         end
       end
+
+      @steps
     end
 
     def solution
