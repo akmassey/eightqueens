@@ -69,8 +69,32 @@ module EightQueens
       false
     end
 
+    def first_choice!
+      return false if attacks == 0
+
+      ints = @queen_array.map { |i| Integer(i) }
+
+      ints.each_with_index do |queen, column|
+        for index in 1..8
+          unless index == queen
+            temp = ints
+            temp[column] = index
+            s = State.new( temp.join("") )
+            if s.attacks < self.attacks
+              @queens = s.queens
+              @queen_array = @queens.split(//)
+              return true
+            end
+          end
+        end
+      end
+
+      return false
+    end
+
     # returns an array of States that are possible to create with one move
     # from the provided queen_positions
+    # TODO: turn this into a successor-yielding method that expects a block
     def self.generate_successors(queen_positions)
       State.verify_queen_positions(queen_positions)
 
