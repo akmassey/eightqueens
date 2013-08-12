@@ -44,7 +44,7 @@ module EightQueens
         solution.diagonal_attacks.should eq 0
       end
 
-      it "should return 0 for a non-solution with no diagonal attacks" do 
+      it "should return 0 for a non-solution with no diagonal attacks" do
         bad.diagonal_attacks.should eq 0
       end
 
@@ -96,7 +96,7 @@ module EightQueens
       end
     end
 
-    context "#best_move!" do 
+    context "#best_move!" do
       it "should return an unchanged State when called on a state that's been solved" do
         tmp = solution.queens
         solution.best_move!
@@ -107,6 +107,28 @@ module EightQueens
         tmp = bad.attacks
         bad.best_move!
         bad.attacks.should be < tmp
+      end
+    end
+
+    context "#randomize" do
+      # TODO: there is a chance this could fail
+      it "should change the position of the queens" do
+        before = solution.queens
+        solution.randomize
+        solution.queens.should_not eq before
+        solution.attacks.should be > 0
+      end
+    end
+
+    context "#move_to" do
+      it "should update the queen positions" do
+        solution.move_to("22222222")
+        solution.queens.should eq "22222222"
+        solution.attacks.should be > 0
+      end
+
+      it "should raise an error when provided with invalid queen positions" do 
+        expect{solution.move_to("alpha")}.to raise_error
       end
     end
 

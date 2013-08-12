@@ -51,6 +51,20 @@ module EightQueens
       28 - attacks
     end
 
+    def move_to(queen_positions)
+      State.verify_queen_positions(queen_positions)
+
+      @queens = queen_positions
+      @queen_array = queen_positions.split(//)
+
+      self
+    end
+
+    def randomize
+      new_positions = @queen_array.shuffle.join
+      move_to new_positions
+    end
+
     # updates the state to the best state you can get to by moving a single
     # queen
     #
