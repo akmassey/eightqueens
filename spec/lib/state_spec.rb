@@ -96,20 +96,6 @@ module EightQueens
       end
     end
 
-    context "#best_move!" do
-      it "should return an unchanged State when called on a state that's been solved" do
-        tmp = solution.queens
-        solution.best_move!
-        solution.queens.should eq tmp
-      end
-
-      it "should return a state with a lower numer of attacks when called on a non-solution" do
-        tmp = bad.attacks
-        bad.best_move!
-        bad.attacks.should be < tmp
-      end
-    end
-
     context "#randomize" do
       # TODO: there is a chance this could fail
       it "should change the position of the queens" do

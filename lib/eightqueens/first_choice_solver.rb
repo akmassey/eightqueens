@@ -8,16 +8,11 @@ module EightQueens
       @solved = false
     end
 
-    # TODO: should we move the best move to this class?
     def solve
-      until @solved
-        if @state.first_choice! == false
-          @solved = true
-        else
-          @steps += 1
-        end
-      end
+      successor, @steps = find_first_choice
 
+      @state = successor if successor
+      @solved = true
       @steps
     end
 
@@ -26,5 +21,21 @@ module EightQueens
 
       @state
     end
+
+    def find_first_choice
+      steps = 0
+      if (@solved || @state.attacks == 0)
+        @solved = true
+        return [nil, steps] 
+      end
+
+      @state.generate_successors do |successor|
+        steps += 1
+        return [successor, steps] if successor.attacks < @state.attacks
+      end
+
+      [nil, steps]
+    end
+
   end
 end

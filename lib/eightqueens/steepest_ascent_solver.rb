@@ -10,7 +10,7 @@ module EightQueens
 
     def solve
       until @solved
-        if @state.best_move! == false
+        unless find_best_move
           @solved = true
         else
           @steps += 1
@@ -25,5 +25,32 @@ module EightQueens
 
       @state
     end
+
+    def find_best_move
+      return false if @state.attacks == 0
+
+      best_state = identify_best_state
+
+      if best_state.attacks < @state.attacks
+        @state.move_to(best_state.queens)
+        return true
+      end
+
+      false
+    end
+
+    # identifies the best state from the state's successors
+    def identify_best_state
+      best = EightQueens::NullState.new
+      found_best_state = false
+
+      @state.generate_successors do |successor|
+        best = successor if best.friendly_pairs < successor.friendly_pairs
+        found_best_state = true
+      end
+
+      found_best_state ? best : @state
+    end
+
   end
 end

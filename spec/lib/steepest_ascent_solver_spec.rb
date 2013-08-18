@@ -11,7 +11,7 @@ module EightQueens
         solver.solve
 
         solver.steps.should_not eq 0
-        solver.state.best_move!.should be false
+        solver.find_best_move.should be false
       end
 
       it "should not take any steps for a solution state" do
@@ -21,7 +21,7 @@ module EightQueens
         solver.solve
 
         solver.steps.should eq 0
-        solver.state.best_move!.should be false
+        solver.find_best_move.should be false
       end
     end
   end
