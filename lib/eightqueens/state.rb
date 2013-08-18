@@ -63,6 +63,12 @@ module EightQueens
       move_to new_positions
     end
 
+    def randomize_one_column
+      new_positions = @queen_array
+      new_positions[rand(8)] = rand(1..8)
+      move_to new_positions.join
+    end
+
     # returns an array of States that are possible to create with one move
     # from the provided queen_positions
     def generate_successors

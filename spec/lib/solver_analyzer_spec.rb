@@ -25,5 +25,14 @@ module EightQueens
       sa.average_attacks.should be > 0
     end
 
+    it "should be able to solve using a RandomRestartSolver" do
+      sa = SolverAnalyzer.new(RandomRestartSolver, PuzzleGenerator.new(100))
+
+      puts "#{sa}"
+
+      sa.average_steps.should be > 0
+      sa.average_attacks.should be > 0
+    end
+
   end
 end

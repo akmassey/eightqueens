@@ -100,7 +100,9 @@ module EightQueens
       # TODO: there is a chance this could fail
       it "should change the position of the queens" do
         before = solution.queens
-        solution.randomize
+        10.times do
+          solution.randomize
+        end
         solution.queens.should_not eq before
         solution.attacks.should be > 0
       end
